@@ -1,7 +1,8 @@
 package tn.esprit.tic.springproj.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Championnat {
@@ -14,4 +15,9 @@ public class Championnat {
     private String libelleC;
 
     private Integer annee;
+    @OneToOne
+    private DetailChampionnat championnatDetail;
+
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch= FetchType.EAGER)
+    private List<Course> courses;
 }

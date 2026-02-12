@@ -1,7 +1,8 @@
 package tn.esprit.tic.springproj.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Contrat {
@@ -14,4 +15,11 @@ public class Contrat {
     private String annee;
 
     private Boolean archived;
+    @ManyToOne
+    private Equipe equipe;
+
+    @ManyToOne
+    private Sponsor sponsor;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="sponsor")
+    private List<Contrat> contrats;
 }

@@ -1,7 +1,8 @@
 package tn.esprit.tic.springproj.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Pilote {
@@ -14,4 +15,9 @@ public class Pilote {
     private Integer nbPointsTotal;
 
     private Integer classementGeneral;
+    @OneToMany(mappedBy = "pilote", cascade = CascadeType.PERSIST)
+    private List<Position> Positions;
+
+    @ManyToOne
+    private Equipe equipe;
 }
