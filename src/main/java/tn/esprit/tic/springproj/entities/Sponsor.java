@@ -1,19 +1,32 @@
 package tn.esprit.tic.springproj.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Sponsor {
-
     @Id
-    private Long idSponsor;
-
-    private String nom;
-
-    private String pays;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idSponsor ;
+    private String nom ;
+    private String pays ;
     private Float budgetAnnuel;
-
     private Boolean bloquerContrat;
+    Boolean archived;
+    LocalDate dateCreation;
+    LocalDate dateDerniereModification;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="sponsor")
+    private List<Contrat> contrats;
+
 }
